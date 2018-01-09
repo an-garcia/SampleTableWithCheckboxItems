@@ -13,12 +13,26 @@ class ViewController: UIViewController {
     // MARK: Properties
     @IBOutlet weak var tableView: UITableView!
     
-    let languages = ["language 1", "language 2", "language 3", "language 4", "language 5", "language 6", "language 7", "language 8", "language 9", "language 10", "language 11", "language 12", "language 13", "language 14", "language 15"]
+    struct Option {
+        let name : String
+        var enabled : Bool
+        
+        init(_ name : String, _ enabled : Bool) {
+            self.name = name
+            self.enabled = false
+        }
+    }
     
-
+    var languages : [Option] = [Option]() // list of options
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+        
+        // Create the Options
+        for index in 1...50 {
+            languages.append(Option("language \(index)", false))
+        }
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -46,23 +60,23 @@ extension ViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = self.tableView.dequeueReusableCell(withIdentifier: "Cell")! as! UITableViewCell
         let laguage = languages[(indexPath as NSIndexPath).row]
-        cell.textLabel!.text = laguage
+        cell.textLabel!.text = laguage.name
+        cell.accessoryType = laguage.enabled ? UITableViewCellAccessoryType.checkmark : UITableViewCellAccessoryType.none
         
         return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
-        // Get the selected verb
-        let laguage = languages[(indexPath as NSIndexPath).row]
+        // mark the cell
+        if self.tableView.cellForRow(at: indexPath)?.accessoryType == UITableViewCellAccessoryType.none {
+            self.tableView.cellForRow(at: indexPath)?.accessoryType = UITableViewCellAccessoryType.checkmark
+        } else {
+            self.tableView.cellForRow(at: indexPath)?.accessoryType = UITableViewCellAccessoryType.none
+        }
         
-        // Get a controller from the Storyboard
-        //let controller = self.storyboard!.instantiateViewController(withIdentifier: "VerbDetailsViewController")as! VerbDetailsViewController
-        
-        // Set the verb data
-        //controller.verb = verb
-        
-        // Push the new controller onto the stack
-        //self.navigationController!.pushViewController(controller, animated: true)
+        // save the value in the array
+        let index = (indexPath as NSIndexPath).row
+        languages[index].enabled = !languages[index].enabled
     }
 }

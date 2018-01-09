@@ -1,10 +1,12 @@
 SampleTableWithCheckboxItems
 =========================
 
-![Scheme](/readmeImages/SimulatorScreenShot-iPhone8Plus-2018-01-08at13.38.31.png)
+![Scheme](/readmeImages/SimulatorScreenShot-iPhone8Plus-2018-01-09at17.02.48.png)
+![Scheme](/readmeImages/SimulatorScreenShot-iPhone8Plus-2018-01-09at17.03.07.png)
 
 
-iOS application to learn table items with checkbox
+iOS application to learn table items with checkbox.
+The application is based on [Youtube video](https://www.youtube.com/watch?v=5MZ-WJuSdpg) tutorial.
 
 
 Pre-requisites
