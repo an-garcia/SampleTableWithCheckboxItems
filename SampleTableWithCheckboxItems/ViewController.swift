@@ -19,7 +19,7 @@ class ViewController: UIViewController {
         
         init(_ name : String, _ enabled : Bool) {
             self.name = name
-            self.enabled = false
+            self.enabled = enabled
         }
     }
     
